@@ -22,7 +22,7 @@ const Game = () => {
     setMessage("");
     const temp = [...blocks];
     const insertedNum = e.target.value.charAt(e.target.value.length - 1);
-    if (+insertedNum === 0) return;
+    if (+insertedNum === 0 || !Number.isInteger(+insertedNum)) return;
     temp[row][col] = {
       readOnly: false,
       val: +insertedNum,
@@ -57,7 +57,7 @@ const Game = () => {
             {rows.map((item, j) => (
               <input
                 readOnly={item.readOnly}
-                className={item.readOnly ? "block block-editable" : "block"}
+                className={item.readOnly ? "block block-disable" : "block"}
                 value={item.val}
                 onChange={(e) => onChange(e, i, j)}
                 key={`col_${j}`}
